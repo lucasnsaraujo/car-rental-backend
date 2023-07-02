@@ -1,9 +1,13 @@
 import express from 'express';
+import swagger from 'swagger-ui-express';
+import swaggerConfig from './swagger.json';
 import { router } from './routes';
 
 const app = express();
 
 app.use(express.json())
+
+app.use('/api-docs', swagger.serve, swagger.setup(swaggerConfig))
 
 app.use(router)
 

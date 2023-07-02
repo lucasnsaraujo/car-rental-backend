@@ -1,0 +1,89 @@
+{
+    "openapi": "3.0.0",
+    "info":  {
+        "title": "Car Rental Backend Documentation",
+        "description": "This is the documentation for the Car Rental Backend API",
+        "version": "1.0.0",
+        "contact": {
+            "name": "Lucas Araujo",
+            "url": "https://www.github.com/lucasnsaraujo"
+        },
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+        "paths": {
+            "/categories": {
+                "post": {
+                    "tags": ["Category"],
+                    "summary": "Create category",
+                    "description": "Creates a new category",
+                    "requestBody": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "description": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "name": "SUV",
+                                        "description": "An SUV car"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "responses": {
+                        "201": {
+                            "description": "Category created successfully"
+                        },
+                        "400": {
+                            "description": "Category already exists"
+                        }
+                    }
+                },
+                "get": {
+                    "tags": ["Category"],
+                    "summary": "List categories",
+                    "description": "Lists all the categories",
+                    "responses": {
+                        "200": {
+                            "description": "Success",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "description": {
+                                                    "type": "string"
+                                                },
+                                                "created_at": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    
+}

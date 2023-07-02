@@ -1,0 +1,18 @@
+version: "3.7"
+
+services:
+  app:
+    build: .
+    # chooses what to build, in this case, the current project directory
+    ports:
+      - 3333:3333
+      # ports to be exposed, in this case, the port 3333 inside the vm will be mapped to the port 3333 in the host machine
+    volumes:
+      - .:/usr/app
+      # the same directory as the WORKDIR in dockerfile, that is the directory inside the vm where the app is running
+
+# to run the container, use the following commands:
+# (docker-compose up) [to start the container]
+# (docker-compose up -d) [to start the container in the background]
+# (docker logs <container_name>) [to see the logs of the container]
+# (docker logs -f <container_name>) [to see the logs of the container in real time]

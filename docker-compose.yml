@@ -1,6 +1,20 @@
 version: "3.7"
 
 services:
+  database:
+    image: postgres
+    container_name: database_ignite
+    restart: always
+    # restarts the container if it stops
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=ignite
+      - POSTGRES_DB=rentx
+    volumes:
+     - pgdata:/data/postgres
+     # the volume will be created in the host machine
   app:
     build: .
     # chooses what to build, in this case, the current project directory
@@ -10,6 +24,18 @@ services:
     volumes:
       - .:/usr/app
       # the same directory as the WORKDIR in dockerfile, that is the directory inside the vm where the app is running
+    links:
+      - database
+      # links the app to the database container
+    depends_on:
+      - database
+      # makes sure that the database container is running before the app container
+
+volumes:
+  pgdata:
+    driver: local
+    # the volume will be created in the host machine
+
 
 # to run the container, use the following commands:
 # (docker-compose up) [to start the container]

@@ -15,7 +15,9 @@
     "uuid": "^9.0.0"
   },
   "scripts": {
-    "dev": "nodemon --watch '*.ts'  --watch '*.json' --exec 'ts-node' ./src/server.ts"
+    "dev": "nodemon --watch '*.ts'  --watch '*.json' --exec npx ts-node ./src/server.ts",
+    "typeorm": "npx ts-node ./node_modules/typeorm/cli",
+    "create-migration": "npm run typeorm migration:create -- -n"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
